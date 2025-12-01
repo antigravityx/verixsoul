@@ -1,0 +1,12 @@
+# Deployment files
+*.pyc
+__pycache__/
+.env
+
+# Local development
+messages.json
+*.log
+
+# IDE
+.vscode/
+.idea/

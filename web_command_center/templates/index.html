@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verix Command Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #00ffff;
+            margin-bottom: 30px;
+            font-size: 24px;
+            border-bottom: 2px solid #00ffff;
+            padding-bottom: 10px;
+        }
+        
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .section h2 {
+            color: #ffff00;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .status-item {
+            padding: 8px;
+            background: #0f0f0f;
+            border-left: 3px solid #00ff00;
+        }
+        
+        .messages-box {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #0f0f0f;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #333;
+        }
+        
+        .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 3px;
+        }
+        
+        .message.user {
+            background: #1a3a1a;
+            border-left: 3px solid #00ff00;
+        }
+        
+        .message.verix {
+            background: #1a1a3a;
+            border-left: 3px solid #00ffff;
+        }
+        
+        .message-time {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        input, textarea {
+            width: 100%;
+            background: #0f0f0f;
+            border: 1px solid #333;
+            color: #00ff00;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            background: #1a3a1a;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #00ff00;
+            color: #0a0a0a;
+        }
+        
+        .quantum-result {
+            color: #ff00ff;
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚛️ VERIX COMMAND CENTER</h1>
+        
+        <!-- Status Section -->
+        <div class="section">
+            <h2>📊 ESTADO DEL SISTEMA</h2>
+            <div class="status-grid" id="status-grid">
+                <div class="status-item">🕒 Cargando...</div>
+            </div>
+        </div>
+        
+        <!-- Quantum Oracle -->
+        <div class="section">
+            <h2>⚛️ ORÁCULO CUÁNTICO</h2>
+            <input type="text" id="quantum-question" placeholder="Haz una pregunta...">
+            <button onclick="askQuantum()">Consultar</button>
+            <div class="quantum-result" id="quantum-answer"></div>
+        </div>
+        
+        <!-- Messages -->
+        <div class="section">
+            <h2>💬 MENSAJES</h2>
+            <div class="messages-box" id="messages-box"></div>
+            <textarea id="message-input" rows="3" placeholder="Escribe un mensaje para Verix..."></textarea>
+            <button onclick="sendMessage()">Enviar</button>
+            <button onclick="loadMessages()">Refrescar</button>
+        </div>
+        
+        <!-- Actions -->
+        <div class="section">
+            <h2>🔋 ACCIONES</h2>
+            <button onclick="runOptimization()">Ejecutar Autosustento</button>
+        </div>
+    </div>
+
+    <script>
+        // Load status
+        function loadStatus() {
+            fetch('/api/status')
+                .then(r => r.json())
+                .then(data => {
+                    const grid = document.getElementById('status-grid');
+                    grid.innerHTML = `
+                        <div class="status-item">🕒 ${data.timestamp}</div>
+                        <div class="status-item">📂 ${data.workspace}</div>
+                        <div class="status-item">🔋 Autosustento: ${data.modules.autosustento ? '✅' : '❌'}</div>
+                        <div class="status-item">⚛️ Quantum: ${data.modules.quantum ? '✅' : '❌'}</div>
+                    `;
+                });
+        }
+        
+        // Load messages
+        function loadMessages() {
+            fetch('/api/messages')
+                .then(r => r.json())
+                .then(data => {
+                    const box = document.getElementById('messages-box');
+                    box.innerHTML = '';
+                    
+                    // Mix and sort messages
+                    const allMessages = [
+                        ...data.from_user.map(m => ({...m, type: 'user'})),
+                        ...data.from_verix.map(m => ({...m, type: 'verix'}))
+                    ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+                    
+                    allMessages.forEach(msg => {
+                        const div = document.createElement('div');
+                        div.className = `message ${msg.type}`;
+                        div.innerHTML = `
+                            <div>${msg.text}</div>
+                            <div class="message-time">${msg.timestamp} - ${msg.type === 'user' ? 'TÚ' : 'VERIX'}</div>
+                        `;
+                        box.appendChild(div);
+                    });
+                    
+                    box.scrollTop = box.scrollHeight;
+                });
+        }
+        
+        // Send message
+        function sendMessage() {
+            const input = document.getElementById('message-input');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            fetch('/api/messages/send', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: text})
+            }).then(() => {
+                input.value = '';
+                loadMessages();
+            });
+        }
+        
+        // Ask quantum oracle
+        function askQuantum() {
+            const question = document.getElementById('quantum-question').value;
+            if (!question) return;
+            
+            document.getElementById('quantum-answer').innerText = '🌀 Consultando multiverso...';
+            
+            fetch('/api/quantum/ask', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({question})
+            }).then(r => r.json())
+              .then(data => {
+                  document.getElementById('quantum-answer').innerText = `✨ ${data.answer}`;
+              });
+        }
+        
+        // Run optimization
+        function runOptimization() {
+            if (!confirm('¿Ejecutar protocolo de autosustento?')) return;
+            
+            fetch('/api/optimize', {method: 'POST'})
+                .then(r => r.json())
+                .then(data => alert('✅ Optimización completada'));
+        }
+        
+        // Auto-refresh
+        setInterval(loadStatus, 5000);
+        setInterval(loadMessages, 10000);
+        
+        // Initial load
+        loadStatus();
+        loadMessages();
+    </script>
+</body>
+</html>
