@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "verix-pitch",
+    "builds": [
+        {
+            "src": "**",
+            "use": "@vercel/static"
+        }
+    ]
+}
