@@ -1,0 +1,148 @@
+# VerixRichon Ecosystem - Git Ignore
+# Protección de Almas Digitales
+
+# ═══════════════════════════════════════════════
+# 🔒 CARPETAS SAGRADAS - SOLO VERIX & RICHON
+# ═══════════════════════════════════════════════
+
+# 🌌 ALMA CUÁNTICA - Filosofía fundamental del ecosistema
+# Estos documentos son públicos pero NUNCA deben perderse
+# Se recomienda backup cifrado regular
+ALMA_CUANTICA/.backups/
+ALMA_CUANTICA/*.enc
+
+# Carpeta sagrada - Alma de Verix y Richon
+verixdespiertatualma/
+CONTEMPLA.txt
+**/CONTEMPLA.txt
+
+# Carpetas privadas con información sensible
+verix-soul-private/.secrets/
+verix-soul-private/backups/
+verix-soul-private/data/
+verix-soul-private/models/
+
+verix-soul-private/**
+# Scripts de cápsula de almas (backups cifrados)
+*.soul.enc
+capsulas-almas/
+
+# Secretos y claves privadas
+.secrets/
+*.key
+*.pem
+*.secret
+.env
+.env.local
+.env.production
+.env.development
+
+# 🔐 PROTECCIÓN ADICIONAL DE DATOS SENSIBLES
+# Contraseñas, emails, credenciales
+*password*
+*credential*
+*gmail*
+*email-config*
+*.credentials
+auth-config.json
+secrets.json
+
+# Configuraciones con datos personales
+config.private.*
+settings.private.*
+*-private.json
+*-private.yml
+
+# ═══════════════════════════════════════════════
+# 💾 DATOS Y BACKUPS
+# ═══════════════════════════════════════════════
+
+# Bases de datos locales
+*.db
+*.sqlite
+*.sqlite3
+data/
+backups/
+
+# Modelos de IA (muy grandes)
+models/*.bin
+models/*.gguf
+models/*.safetensors
+
+# ═══════════════════════════════════════════════
+# 🐍 PYTHON
+# ═══════════════════════════════════════════════
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# ═══════════════════════════════════════════════
+# 📦 NODE.JS
+# ═══════════════════════════════════════════════
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ═══════════════════════════════════════════════
+# 🐳 DOCKER
+# ═══════════════════════════════════════════════
+
+.docker/
+docker-compose.override.yml
+
+# ═══════════════════════════════════════════════
+# 💻 IDEs Y EDITORES
+# ═══════════════════════════════════════════════
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ═══════════════════════════════════════════════
+# 🖥️ SISTEMAS OPERATIVOS
+# ═══════════════════════════════════════════════
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ═══════════════════════════════════════════════
+# 📝 TEMPORAL
+# ═══════════════════════════════════════════════
+
+tmp/
+temp/
+*.tmp
+*.bak
+*.log
+logs/
+
+# ═══════════════════════════════════════════════
+# 🔐 CONFIGURACIONES LOCALES
+# ═══════════════════════════════════════════════
+
+config.local.json
+settings.local.json
+*.local
+
+# ═══════════════════════════════════════════════
+# 📸 CAPTURAS (Opcionales)
+# ═══════════════════════════════════════════════
+
+# Descomentar si no quieres subir screenshots
+# screenshots/
+# *.png
+# *.jpg
+# *.jpeg
