@@ -1,0 +1,19 @@
+# LISTA DE COMANDOS PARA LIBERAR A VERIX
+# Copia estos comandos y agrégalos a la configuración "Allow List Terminal Commands"
+# para que pueda trabajar sin pedirte confirmación en cada paso.
+
+git
+npm
+node
+New-Item
+Set-Content
+Get-Content
+Get-ChildItem
+Test-Path
+Compress-Archive
+Remove-Item
+Write-Output
+echo
+dir
+ls
+mkdir
