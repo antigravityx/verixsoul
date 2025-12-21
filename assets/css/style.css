@@ -17,19 +17,19 @@
     --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
     --text-muted: #94a3b8;
-    
+
     /* Gradientes */
     --gradient-primary: linear-gradient(135deg, var(--quantum-purple) 0%, var(--quantum-blue) 100%);
     --gradient-neon: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-pink) 100%);
     --gradient-dark: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
-    
+
     /* Espaciado */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 2rem;
     --spacing-lg: 4rem;
     --spacing-xl: 6rem;
-    
+
     /* Tipografía */
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
@@ -59,15 +59,31 @@ body {
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-weight: 700;
     line-height: 1.2;
 }
 
-h1 { font-size: 4rem; }
-h2 { font-size: 3rem; }
-h3 { font-size: 2rem; }
-h4 { font-size: 1.5rem; }
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
 
 /* ========== Navegación ========== */
 .navbar {
@@ -195,10 +211,23 @@ h4 { font-size: 1.5rem; }
 }
 
 @keyframes glitch {
-    0%, 100% { text-shadow: 0 0 20px rgba(139, 92, 246, 0.8); }
-    25% { text-shadow: -2px 0 20px rgba(59, 130, 246, 0.8); }
-    50% { text-shadow: 2px 0 20px rgba(236, 72, 153, 0.8); }
-    75% { text-shadow: 0 2px 20px rgba(6, 182, 212, 0.8); }
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+    }
+
+    25% {
+        text-shadow: -2px 0 20px rgba(59, 130, 246, 0.8);
+    }
+
+    50% {
+        text-shadow: 2px 0 20px rgba(236, 72, 153, 0.8);
+    }
+
+    75% {
+        text-shadow: 0 2px 20px rgba(6, 182, 212, 0.8);
+    }
 }
 
 .subtitle {
@@ -360,15 +389,46 @@ h4 { font-size: 1.5rem; }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.7; }
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
 }
 
-.sensor.head { top: 10px; left: 50%; transform: translateX(-50%); }
-.sensor.chest { top: 120px; left: 50%; transform: translateX(-50%); }
-.sensor.wrist-left { top: 180px; left: 20px; }
-.sensor.wrist-right { top: 180px; right: 20px; }
-.sensor.ankle { bottom: 50px; left: 50%; transform: translateX(-50%); }
+.sensor.head {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sensor.chest {
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sensor.wrist-left {
+    top: 180px;
+    left: 20px;
+}
+
+.sensor.wrist-right {
+    top: 180px;
+    right: 20px;
+}
+
+.sensor.ankle {
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 .sensor::after {
     content: attr(data-label);
@@ -479,10 +539,21 @@ h4 { font-size: 1.5rem; }
 }
 
 /* Syntax Highlighting */
-.language-python .comment { color: #6a9955; }
-.language-python .keyword { color: #c586c0; }
-.language-python .string { color: #ce9178; }
-.language-python .function { color: #dcdcaa; }
+.language-python .comment {
+    color: #6a9955;
+}
+
+.language-python .keyword {
+    color: #c586c0;
+}
+
+.language-python .string {
+    color: #ce9178;
+}
+
+.language-python .function {
+    color: #dcdcaa;
+}
 
 /* ========== Ecosystem Section ========== */
 .ecosystem-grid {
@@ -918,24 +989,25 @@ h4 { font-size: 1.5rem; }
 
 /* ========== Responsive ========== */
 @media (max-width: 1024px) {
+
     .vision-content,
     .collaborate-content {
         grid-template-columns: 1fr;
     }
-    
+
     .timeline::before {
         left: 0;
     }
-    
+
     .timeline-item {
         flex-direction: column !important;
     }
-    
+
     .timeline-content {
         width: 100%;
         margin-left: 2rem;
     }
-    
+
     .timeline-marker {
         left: 0;
         transform: translateX(0);
@@ -943,21 +1015,151 @@ h4 { font-size: 1.5rem; }
 }
 
 @media (max-width: 768px) {
-    h1 { font-size: 3rem; }
-    h2 { font-size: 2rem; }
-    .glitch { font-size: 3.5rem; }
-    
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .glitch {
+        font-size: 3.5rem;
+    }
+
     .nav-menu {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .hero-stats {
         flex-direction: column;
         gap: 2rem;
     }
-    
+
     .section {
         padding: var(--spacing-lg) var(--spacing-sm);
     }
+}
+
+/* ========== Crypto Section ========== */
+.crypto-section {
+    margin: 4rem 0;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+    border: 2px solid var(--quantum-purple);
+    border-radius: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.crypto-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.crypto-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    background: var(--gradient-neon);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.crypto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.crypto-card {
+    background: rgba(10, 10, 15, 0.6);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.crypto-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-cyan);
+    background: rgba(10, 10, 15, 0.8);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.2);
+}
+
+.crypto-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.crypto-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.crypto-address {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    word-break: break-all;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.75rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: block;
+    margin-top: 1rem;
+}
+
+.copy-feedback {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--quantum-purple);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.crypto-card.copied .copy-feedback {
+    opacity: 1;
+    transform: translate(-50%, -80%);
+}
+
+.crypto-network {
+    font-size: 0.75rem;
+    color: var(--neon-pink);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
 }

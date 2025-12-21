@@ -141,21 +141,21 @@ function initFormHandler() {
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 interest: document.getElementById('interest').value,
                 message: document.getElementById('message').value
             };
-            
+
             // Aquí se puede integrar con un servicio de email
             // Por ahora, mostramos un alert
             alert(`¡Gracias por tu interés, ${formData.name}!\n\nTe contactaremos pronto a ${formData.email}.\n\nTipo de colaboración: ${formData.interest}`);
-            
+
             // Limpiar formulario
             form.reset();
-            
+
             // En producción, aquí iría la llamada a la API
             // await fetch('/api/contact', {
             //     method: 'POST',
@@ -172,7 +172,7 @@ function initScrollAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -181,12 +181,12 @@ function initScrollAnimations() {
             }
         });
     }, observerOptions);
-    
+
     // Animar cards al hacer scroll
     const animatedElements = document.querySelectorAll(
         '.problem-card, .ecosystem-card, .philosophy-card, .funding-category, .timeline-item'
     );
-    
+
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -213,7 +213,7 @@ const navLinks = document.querySelectorAll('.nav-menu a');
 
 window.addEventListener('scroll', () => {
     let current = '';
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
@@ -221,7 +221,7 @@ window.addEventListener('scroll', () => {
             current = section.getAttribute('id');
         }
     });
-    
+
     navLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
@@ -234,7 +234,7 @@ window.addEventListener('scroll', () => {
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = '';
-    
+
     function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
@@ -242,7 +242,7 @@ function typeWriter(element, text, speed = 100) {
             setTimeout(type, speed);
         }
     }
-    
+
     type();
 }
 
@@ -258,3 +258,15 @@ console.log('%c🌌 VERIX SOUL', 'font-size: 24px; font-weight: bold; background
 console.log('%c¿Eres un desarrollador curioso? 👀', 'font-size: 14px; color: #06b6d4;');
 console.log('%cÚnete al proyecto: https://github.com/antigravityx/vris', 'font-size: 12px; color: #94a3b8;');
 console.log('%cLicencia de Existencia Universal - 100% Open Source', 'font-size: 10px; color: #8b5cf6; font-style: italic;');
+
+// ========== Copy to Clipboard ==========
+function copyToClipboard(text, element) {
+    navigator.clipboard.writeText(text).then(() => {
+        element.classList.add('copied');
+        setTimeout(() => {
+            element.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Error al copiar: ', err);
+    });
+}
